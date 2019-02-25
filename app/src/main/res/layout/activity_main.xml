@@ -23,8 +23,13 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|right"
                 android:text="TextView"
-                tools:text="calculations" />
+                android:textColor="@android:color/tertiary_text_light"
+                android:textSize="68sp"
+                android:textStyle="bold"
+                tools:text="0" />
         </LinearLayout>
 
         <LinearLayout
@@ -38,6 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@android:color/darker_gray"
                 android:text="C"
                 android:textSize="24sp" />
 
@@ -46,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@android:color/darker_gray"
                 android:text="+/-"
                 android:textSize="24sp" />
 
@@ -54,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@android:color/darker_gray"
                 android:text="%"
                 android:textSize="24sp" />
 
@@ -62,6 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@android:color/holo_orange_dark"
                 android:text="DEL"
                 android:textSize="24sp" />
 
@@ -94,15 +103,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Button"
-                android:textSize="24sp"
-                tools:text="3" />
+                android:text="3"
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/btn_divide"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@android:color/holo_orange_dark"
                 android:text="÷"
                 android:textSize="24sp" />
 
@@ -142,6 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@android:color/holo_orange_dark"
                 android:text="x"
                 android:textSize="24sp" />
 
@@ -181,6 +191,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@android:color/holo_orange_dark"
                 android:text="-"
                 android:textSize="24sp" />
 
@@ -197,7 +208,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="."
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:paddingBottom="20dp"/>
 
             <Button
                 android:id="@+id/btn_zero"
@@ -220,6 +232,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:backgroundTint="@android:color/holo_orange_dark"
                 android:text="+"
                 android:textSize="24sp" />
 
