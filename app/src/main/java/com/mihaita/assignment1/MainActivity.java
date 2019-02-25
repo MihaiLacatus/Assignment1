@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView nv = findViewById(R.id.nav_view);
         nv.setNavigationItemSelectedListener(this);
 
-        
+
 
 
     }
