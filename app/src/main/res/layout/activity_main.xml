@@ -25,11 +25,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="bottom|right"
-                android:text="TextView"
+                android:text="0"
                 android:textColor="@android:color/tertiary_text_light"
                 android:textSize="68sp"
-                android:textStyle="bold"
-                tools:text="0" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
