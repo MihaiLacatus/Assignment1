@@ -28,71 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return history;
     }
 
-    public void pressButton(boolean mathBtnPressed, String number) {
-        TextView result = findViewById(R.id.textView_calculation);
 
-        if (mathBtnPressed == true || equalBtnPressed == true) {
-            result.setText("");
-        }
-        // sa incercam un else aici
-
-        result.setText((result.getText().toString().equals("0")) ? number : result.getText() + number);
-
-        anyMathBtnPressed = false;
-        equalBtnPressed = false;
-        firstNumberPressed = true;
-
-        history = history + number;
-    }
-
-    public void takeInputForMath() {
-        secondNumberPressed = true;
-
-        TextView result = findViewById(R.id.textView_calculation);
-        //make one line with if first condition && second condition
-        if (!result.getText().toString().isEmpty()) {
-            anyMathBtnPressed = true;
-
-            if (secondNumberPressed == true) {
-                calculate();
-            }
-
-            numberOne = Double.parseDouble(result.getText().toString());
-        }
-
-        addBtnPressed = false;
-        subtractBtnPressed = false;
-        divideBtnPressed = false;
-        multiplyBtnPressed = false;
-
-    }
-
-    public void calculate() {
-        total = 0;
-
-        TextView result = findViewById(R.id.textView_calculation);
-
-        if (secondNumberPressed == true || equalBtnPressed == true || calculationFinished == true) {
-            //aici nu e nevoie de nr 3 poate fi direct nr 1
-
-            double number3 = Double.parseDouble(result.getText().toString());
-            numberOne = number3;
-        } else { numberTwo = Double.parseDouble(result.getText().toString()); }
-
-        if (addBtnPressed==true) {
-            total = numberOne + numberTwo;
-        } else if (subtractBtnPressed==true){
-            total = numberOne - numberTwo;
-        } else if (divideBtnPressed==true && numberTwo!=0){
-            total = numberOne / numberTwo;
-        } else if (multiplyBtnPressed==true){
-            total = numberOne * numberTwo;
-        } else { total = numberTwo;}
-
-        secondNumberPressed = true;
-        calculationFinished = true;
-
-    }
 
 
     @Override
@@ -127,61 +63,61 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pressButton(anyMathBtnPressed,"0");
+                mathButtonPressed(anyMathBtnPressed,"0");
             }
         });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pressButton(anyMathBtnPressed,"1");
+                mathButtonPressed(anyMathBtnPressed,"1");
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pressButton(anyMathBtnPressed,"2");
+                mathButtonPressed(anyMathBtnPressed,"2");
             }
         });
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pressButton(anyMathBtnPressed,"3");
+                mathButtonPressed(anyMathBtnPressed,"3");
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pressButton(anyMathBtnPressed,"4");
+                mathButtonPressed(anyMathBtnPressed,"4");
             }
         });
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pressButton(anyMathBtnPressed,"5");
+                mathButtonPressed(anyMathBtnPressed,"5");
             }
         });
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pressButton(anyMathBtnPressed,"6");
+                mathButtonPressed(anyMathBtnPressed,"6");
             }
         });
         b7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pressButton(anyMathBtnPressed,"7");
+                mathButtonPressed(anyMathBtnPressed,"7");
             }
         });
         b8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pressButton(anyMathBtnPressed,"8");
+                mathButtonPressed(anyMathBtnPressed,"8");
             }
         });
         b9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pressButton(anyMathBtnPressed,"9");
+                mathButtonPressed(anyMathBtnPressed,"9");
             }
         });
         bDot.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate();
+                doMathCalculation();
                 equalBtnPressed = true;
 
                 secondNumberPressed=false;
@@ -214,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takeInputForMath();
+                getFirstNumberForCalculation();
                 addBtnPressed = true;
                 history = history + "+";
             }
@@ -222,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bSubtract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takeInputForMath();
+                getFirstNumberForCalculation();
                 subtractBtnPressed = true;
                 history = history + "-";
             }
@@ -230,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bMultiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takeInputForMath();
+                getFirstNumberForCalculation();
                 multiplyBtnPressed = true;
                 history= history + "*";
             }
@@ -238,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                takeInputForMath();
+                getFirstNumberForCalculation();
                 divideBtnPressed = true;
                 history = history + "/";
             }
@@ -284,8 +220,73 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 history = history + "C\n";
             }
         });
+    }
 
+    public void mathButtonPressed(boolean mathBtnPressed, String number) {
+        TextView result = findViewById(R.id.textView_calculation);
 
+        if (mathBtnPressed == true || equalBtnPressed == true) {
+            result.setText("");
+        }
+        // sa incercam un else aici
+
+        result.setText((result.getText().toString().equals("0")) ? number : result.getText() + number);
+
+        anyMathBtnPressed = false;
+        equalBtnPressed = false;
+        firstNumberPressed = true;
+
+        history = history + number;
+    }
+
+    public void getFirstNumberForCalculation() {
+        secondNumberPressed = true;
+
+        TextView result = findViewById(R.id.textView_calculation);
+        //make one line with if first condition && second condition
+        if (!result.getText().toString().isEmpty()) {
+            anyMathBtnPressed = true;
+
+            if (secondNumberPressed == true) {
+                doMathCalculation();
+            }
+
+            numberOne = Double.parseDouble(result.getText().toString());
+        }
+
+        addBtnPressed = false;
+        subtractBtnPressed = false;
+        divideBtnPressed = false;
+        multiplyBtnPressed = false;
+
+    }
+
+    public void doMathCalculation() {
+        double total = 0;
+
+        TextView result = findViewById(R.id.textView_calculation);
+
+        if (secondNumberPressed == true && equalBtnPressed == true && calculationFinished == true) {
+            //aici nu e nevoie de nr 3 poate fi direct nr 1
+
+            double number3 = Double.parseDouble(result.getText().toString());
+            numberOne = number3;
+        } else { numberTwo = Double.parseDouble(result.getText().toString()); }
+
+        if (addBtnPressed==true) {
+            total = numberOne + numberTwo;
+        } else if (subtractBtnPressed==true){
+            total = numberOne - numberTwo;
+        } else if (divideBtnPressed==true && numberTwo!=0){
+            total = numberOne / numberTwo;
+        } else if (multiplyBtnPressed==true){
+            total = numberOne * numberTwo;
+        } else { total = numberTwo;}
+
+        result.setText(String.valueOf(total));
+
+        secondNumberPressed = true;
+        calculationFinished = true;
 
     }
 
