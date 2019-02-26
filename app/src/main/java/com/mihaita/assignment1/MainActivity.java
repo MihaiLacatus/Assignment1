@@ -306,7 +306,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i);
         }
 
+        if(item.getItemId()== R.id.nav_history){
+            Intent i = new Intent(getApplicationContext(), HistoryActivity.class);
+            i.putExtra("value", history);
+            startActivity(i);
+
+        }
+
         dl.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

@@ -1,7 +1,9 @@
 package com.mihaita.assignment1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class HistoryActivity extends AppCompatActivity {
 
@@ -10,8 +12,12 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        Intent i = getIntent();
+        TextView tvHistory = findViewById(R.id.textView_history);
 
+        String history = i.getStringExtra("value");
 
+        tvHistory.setText(history);
 
     }
 }
