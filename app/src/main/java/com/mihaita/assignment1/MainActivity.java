@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout dl;
@@ -22,11 +24,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     boolean addBtnPressed, subtractBtnPressed, divideBtnPressed, multiplyBtnPressed, equalBtnPressed,
             anyMathBtnPressed, firstNumberPressed, secondNumberPressed, calculationFinished;
 
-    String history = "";
+    ArrayList<String> history = new ArrayList<>();
 
-    public String getHistory() {
-        return history;
-    }
+
 
 
 
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 TextView result = findViewById(R.id.textView_calculation);
                 result.setText(result.getText().toString() + ".");
-                history = history + ".";
+                history.add(".");
             }
         });
         bEqual.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 TextView result = findViewById(R.id.textView_calculation);
                 //putin diferit aici
-                history = history + "=" + result.getText().toString() +"\n";
+                history.add("=" + result.getText().toString() +"\n");
 
             }
         });
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 getFirstNumberForCalculation();
                 addBtnPressed = true;
-                history = history + "+";
+                history.add("+");
             }
         });
         bSubtract.setOnClickListener(new View.OnClickListener() {
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 getFirstNumberForCalculation();
                 subtractBtnPressed = true;
-                history = history + "-";
+                history.add("-");
             }
         });
         bMultiply.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 getFirstNumberForCalculation();
                 multiplyBtnPressed = true;
-                history= history + "*";
+                history.add("*");
             }
         });
         bDivide.setOnClickListener(new View.OnClickListener() {
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 getFirstNumberForCalculation();
                 divideBtnPressed = true;
-                history = history + "/";
+                history.add("/");
             }
         });
         bDel.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 TextView result = findViewById(R.id.textView_calculation);
                 result.setText("");
-                history = history + "DEL";
+                history.add("DEL");
             }
         });
         bPercentage.setOnClickListener(new View.OnClickListener() {
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 TextView result = findViewById(R.id.textView_calculation);
                 result.setText(String.valueOf(Double.parseDouble(result.getText().toString())/100));
-                history = history + "%";
+                history.add("%");
             }
         });
         bPozNeg.setOnClickListener(new View.OnClickListener() {
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View v) {
                 TextView result = findViewById(R.id.textView_calculation);
                 result.setText(String.valueOf(Double.parseDouble(result.getText().toString()) * -1));
-                history = history + "+/-";
+                history.add("+/-");
             }
         });
         bClear.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 multiplyBtnPressed = false;
                 divideBtnPressed = false;
                 calculationFinished = false;
-                history = history + "C\n";
+                history.add("C\n");
             }
         });
     }
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         equalBtnPressed = false;
         firstNumberPressed = true;
 
-        history = history + number;
+        history.add(number);
     }
 
     public void getFirstNumberForCalculation() {
@@ -302,13 +302,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.nav_about) {
 
-            Intent i = new Intent(getApplicationContext(), HistoryActivity.class);
+            Intent i = new Intent(getApplicationContext(), AboutActivity.class);
             startActivity(i);
         }
 
         if(item.getItemId()== R.id.nav_history){
             Intent i = new Intent(getApplicationContext(), HistoryActivity.class);
-            i.putExtra("value", history);
+            String completeHistory = "";
+
+            for (String s:history){
+                completeHistory = completeHistory + s +"\t";
+            }
+
+            i.putExtra("value", completeHistory);
             startActivity(i);
 
         }
