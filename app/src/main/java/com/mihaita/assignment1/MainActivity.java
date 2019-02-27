@@ -27,10 +27,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ArrayList<String> history = new ArrayList<>();
 
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,68 +52,68 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 bMultiply = findViewById(R.id.btn_multiply), bDivide = findViewById(R.id.btn_divide),
                 bDel = findViewById(R.id.btn_del), bPercentage = findViewById(R.id.btn_percent),
                 bPozNeg = findViewById(R.id.btn_sign), bClear = findViewById(R.id.btn_clear);
-        TextView result = findViewById(R.id.textView_calculation);
+        //TextView result = findViewById(R.id.textView_calculation);
 
 
         //missing some cases for zero number
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed,"0");
+                mathButtonPressed(anyMathBtnPressed, "0");
             }
         });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed,"1");
+                mathButtonPressed(anyMathBtnPressed, "1");
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed,"2");
+                mathButtonPressed(anyMathBtnPressed, "2");
             }
         });
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed,"3");
+                mathButtonPressed(anyMathBtnPressed, "3");
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed,"4");
+                mathButtonPressed(anyMathBtnPressed, "4");
             }
         });
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed,"5");
+                mathButtonPressed(anyMathBtnPressed, "5");
             }
         });
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed,"6");
+                mathButtonPressed(anyMathBtnPressed, "6");
             }
         });
         b7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed,"7");
+                mathButtonPressed(anyMathBtnPressed, "7");
             }
         });
         b8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed,"8");
+                mathButtonPressed(anyMathBtnPressed, "8");
             }
         });
         b9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed,"9");
+                mathButtonPressed(anyMathBtnPressed, "9");
             }
         });
         bDot.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 doMathCalculation();
                 equalBtnPressed = true;
 
-                secondNumberPressed=false;
+                secondNumberPressed = false;
                 addBtnPressed = false;
                 subtractBtnPressed = false;
                 divideBtnPressed = false;
@@ -143,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 TextView result = findViewById(R.id.textView_calculation);
                 //putin diferit aici
-                history.add("=" + result.getText().toString() +"\n");
+                history.add("=" + result.getText().toString() + "\n");
 
             }
         });
@@ -191,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 TextView result = findViewById(R.id.textView_calculation);
-                result.setText(String.valueOf(Double.parseDouble(result.getText().toString())/100));
+                result.setText(String.valueOf(Double.parseDouble(result.getText().toString()) / 100));
                 history.add("%");
             }
         });
@@ -228,7 +224,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (mathBtnPressed == true || equalBtnPressed == true) {
             result.setText("");
         }
-        // sa incercam un else aici
 
         result.setText((result.getText().toString().equals("0")) ? number : result.getText() + number);
 
@@ -243,13 +238,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         secondNumberPressed = true;
 
         TextView result = findViewById(R.id.textView_calculation);
-        //make one line with if first condition && second condition
-        if (!result.getText().toString().isEmpty()) {
+
+        if (!result.getText().toString().isEmpty() && secondNumberPressed == true) {
             anyMathBtnPressed = true;
 
-            if (secondNumberPressed == true) {
-                doMathCalculation();
-            }
+            doMathCalculation();
 
             numberOne = Double.parseDouble(result.getText().toString());
         }
@@ -262,30 +255,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void doMathCalculation() {
-        double total = 0;
-
         TextView result = findViewById(R.id.textView_calculation);
 
-        if (secondNumberPressed == true && equalBtnPressed == true && calculationFinished == true) {
-            //aici nu e nevoie de nr 3 poate fi direct nr 1
+        if (secondNumberPressed == true && calculationFinished == true && equalBtnPressed == false ) {
+            numberOne = Double.parseDouble(result.getText().toString());
+        } else
+            numberTwo = Double.parseDouble(result.getText().toString());
 
-            double number3 = Double.parseDouble(result.getText().toString());
-            numberOne = number3;
-        } else { numberTwo = Double.parseDouble(result.getText().toString()); }
 
-        if (addBtnPressed==true) {
+        if (addBtnPressed == true) {
             total = numberOne + numberTwo;
-        } else if (subtractBtnPressed==true){
+        } else if (subtractBtnPressed == true) {
             total = numberOne - numberTwo;
-        } else if (divideBtnPressed==true && numberTwo!=0){
+        } else if (divideBtnPressed == true && numberTwo != 0) {
             total = numberOne / numberTwo;
-        } else if (multiplyBtnPressed==true){
+        } else if (multiplyBtnPressed == true) {
             total = numberOne * numberTwo;
-        } else { total = numberTwo;}
+        } else
+            total = numberTwo;
+
 
         result.setText(String.valueOf(total));
 
-        secondNumberPressed = true;
+        secondNumberPressed = false;
         calculationFinished = true;
 
     }
@@ -306,12 +298,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i);
         }
 
-        if(item.getItemId()== R.id.nav_history){
+        if (item.getItemId() == R.id.nav_history) {
             Intent i = new Intent(getApplicationContext(), HistoryActivity.class);
             String completeHistory = "";
 
-            for (String s:history){
-                completeHistory = completeHistory + s +"\t";
+            for (String s : history) {
+                completeHistory += s + "\t";
             }
 
             i.putExtra("value", completeHistory);

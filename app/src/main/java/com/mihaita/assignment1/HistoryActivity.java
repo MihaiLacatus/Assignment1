@@ -13,7 +13,7 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         Intent i = getIntent();
-        TextView tvHistory = findViewById(R.id.textView_history);
+        TextView tvHistory = findViewById(R.id.tv_receiveHistory);
 
         String history = i.getStringExtra("value");
 
