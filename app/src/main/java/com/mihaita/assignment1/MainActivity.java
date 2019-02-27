@@ -257,10 +257,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void doMathCalculation() {
         TextView result = findViewById(R.id.textView_calculation);
 
-        if (secondNumberPressed == true && calculationFinished == true && equalBtnPressed == false ) {
+        if (secondNumberPressed == true && calculationFinished == true && equalBtnPressed == false) {
             numberOne = Double.parseDouble(result.getText().toString());
-        } else
+        } else {
             numberTwo = Double.parseDouble(result.getText().toString());
+        }
 
 
         if (addBtnPressed == true) {
@@ -271,9 +272,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             total = numberOne / numberTwo;
         } else if (multiplyBtnPressed == true) {
             total = numberOne * numberTwo;
-        } else
+        } else {
             total = numberTwo;
-
+        }
 
         result.setText(String.valueOf(total));
 
