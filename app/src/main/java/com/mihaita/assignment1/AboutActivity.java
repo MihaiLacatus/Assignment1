@@ -11,9 +11,10 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
+        setContentView(R.layout.activity_about);
 
-        Button b = findViewById(R.id.btn_goBack);
+        Button b = findViewById(R.id.btn_goBackFromAbout);
+
         final Intent i= new Intent(this, MainActivity.class);
 
         b.setOnClickListener(new View.OnClickListener() {
