@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     double numberOne, numberTwo, total;
 
     boolean addBtnPressed, subtractBtnPressed, divideBtnPressed, multiplyBtnPressed, equalBtnPressed,
-            anyMathBtnPressed, firstNumberPressed, secondNumberPressed, calculationFinished;
+            anyNumberKeyPressed, firstNumberPressed, secondNumberPressed, calculationFinished;
 
     ArrayList<String> history = new ArrayList<>();
 
@@ -59,61 +59,61 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed, "0");
+                mathButtonPressed(anyNumberKeyPressed, "0");
             }
         });
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed, "1");
+                mathButtonPressed(anyNumberKeyPressed, "1");
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed, "2");
+                mathButtonPressed(anyNumberKeyPressed, "2");
             }
         });
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed, "3");
+                mathButtonPressed(anyNumberKeyPressed, "3");
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed, "4");
+                mathButtonPressed(anyNumberKeyPressed, "4");
             }
         });
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed, "5");
+                mathButtonPressed(anyNumberKeyPressed, "5");
             }
         });
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed, "6");
+                mathButtonPressed(anyNumberKeyPressed, "6");
             }
         });
         b7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed, "7");
+                mathButtonPressed(anyNumberKeyPressed, "7");
             }
         });
         b8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed, "8");
+                mathButtonPressed(anyNumberKeyPressed, "8");
             }
         });
         b9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mathButtonPressed(anyMathBtnPressed, "9");
+                mathButtonPressed(anyNumberKeyPressed, "9");
             }
         });
         bDot.setOnClickListener(new View.OnClickListener() {
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 subtractBtnPressed = false;
                 divideBtnPressed = false;
                 multiplyBtnPressed = false;
-                anyMathBtnPressed = false;
+                anyNumberKeyPressed = false;
 
                 TextView result = findViewById(R.id.textView_calculation);
                 //putin diferit aici
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 result.setText("0");
                 numberOne = 0;
                 numberTwo = 0;
-                anyMathBtnPressed = false;
+                anyNumberKeyPressed = false;
                 firstNumberPressed = false;
                 addBtnPressed = false;
                 subtractBtnPressed = false;
@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         result.setText((result.getText().toString().equals("0")) ? number : result.getText() + number);
 
-        anyMathBtnPressed = false;
+        anyNumberKeyPressed = false;
         equalBtnPressed = false;
         firstNumberPressed = true;
 
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView result = findViewById(R.id.textView_calculation);
 
         if (!result.getText().toString().isEmpty() && secondNumberPressed == true) {
-            anyMathBtnPressed = true;
+            anyNumberKeyPressed = true;
 
             doMathCalculation();
 
