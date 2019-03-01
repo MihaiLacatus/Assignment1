@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -195,7 +196,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 TextView result = findViewById(R.id.textView_calculation);
-                result.setText(String.valueOf(Double.parseDouble(result.getText().toString()) * -1));
+                DecimalFormat df = new DecimalFormat("0.#########");
+                result.setText(String.valueOf(df.format(Double.parseDouble(result.getText().toString()) * -1)));
                 history.add("+/-");
             }
         });
@@ -276,7 +278,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             total = numberTwo;
         }
 
-        result.setText(String.valueOf(total));
+       // String.format(doubleVal).replaceAll("\\.0+$", "");
+
+        DecimalFormat df = new DecimalFormat("0.#########");
+
+        result.setText(String.valueOf(df.format(total)));
 
         secondNumberPressed = false;
         calculationFinished = true;
